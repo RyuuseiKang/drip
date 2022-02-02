@@ -4,8 +4,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import MainView from './views/main';
 import NoteDetailView, {NoteDetailProps} from './views/noteDetail';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
+import {Easing} from 'react-native';
 
-const MainStack = createNativeStackNavigator();
+const MainStack = createSharedElementStackNavigator<ScreenParamList>();
 const RootStack = createNativeStackNavigator();
 
 export type ScreenParamList = {
@@ -27,7 +29,17 @@ const Main: React.FC = () => {
         name="NoteDetail"
         component={NoteDetailView}
         options={{
+          gestureEnabled: false,
           headerShown: true,
+          detachPreviousScreen: false,
+        }}
+        sharedElements={(route, otherRoute, showing) => {
+          const {id} = route.params;
+          return [
+            {
+              id: `note.${id}.photo`,
+            },
+          ];
         }}
       />
     </MainStack.Navigator>

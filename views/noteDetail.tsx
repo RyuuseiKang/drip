@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, View} from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
-import {TitleText} from '../types';
+import {Image, ImageBackground, SafeAreaView, View} from 'react-native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {BoldText, NormalText, TitleText} from '../types';
 import {ScreenParamList} from '../AppRouter';
+import {SharedElement} from 'react-navigation-shared-element';
+import styled from 'styled-components/native';
 
 export interface NoteDetailProps {
   id: number;
@@ -11,8 +13,9 @@ export interface NoteDetailProps {
   location: string;
 }
 
-const NoteDetail: React.FC = () => {
-  const {id} = useRoute<RouteProp<ScreenParamList, 'NoteDetail'>>().params;
+const NoteDetail = () => {
+  const {id, title, image, location} =
+    useRoute<RouteProp<ScreenParamList, 'NoteDetail'>>().params;
 
   useEffect(() => {
     fetchData();
@@ -22,10 +25,16 @@ const NoteDetail: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <View>
-        <TitleText>{id.toString()}</TitleText>
-      </View>
+      <SharedElement id={`note.${id}.photo`}>
+        <Image
+          source={{uri: image}}
+          resizeMode="cover"
+          style={{height: 300, width: '100%'}}
+        />
+      </SharedElement>
+      <TitleText>{id.toString()}</TitleText>
     </SafeAreaView>
   );
 };
+
 export default NoteDetail;

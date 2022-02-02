@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView, FlatList, Dimensions} from 'react-native';
+import {Animated, View, SafeAreaView, FlatList, Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 import {BlurView} from '@react-native-community/blur';
 
@@ -125,7 +125,7 @@ const Main: React.FC = () => {
     <Container>
       <MainView>
         <ContentContainer>
-          <FlatList
+          <Animated.FlatList
             keyExtractor={(item, index) => index.toString()}
             data={DATA}
             renderItem={({item}: {item: CardItemProps}) => (
@@ -141,9 +141,9 @@ const Main: React.FC = () => {
               paddingLeft: 5,
               paddingRight: 5,
             }}
-            contentInset={{top: 55, bottom: 25}}
-            contentOffset={{x: 0, y: -55}}
-            numColumns={getNumColumnsByWidth()}></FlatList>
+            contentInset={{top: 60, bottom: 25}}
+            contentOffset={{x: 0, y: -60}}
+            numColumns={getNumColumnsByWidth()}></Animated.FlatList>
         </ContentContainer>
         <TitleContainer>
           <BlurView blurType="regular">

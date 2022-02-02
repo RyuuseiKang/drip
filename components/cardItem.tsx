@@ -1,10 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {ImageBackground, Touchable, TouchableOpacity, View} from 'react-native';
+import {Touchable, TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {BoldText, NormalText, TitleText} from '../types';
+import {SharedElement} from 'react-navigation-shared-element';
 
 export interface CardItemProps {
   id: number;
@@ -16,13 +17,24 @@ export interface CardItemProps {
 const Container = styled.View`
   flex: 1;
   padding: 5px;
+  height: 260px;
 `;
 
-const Background = styled.ImageBackground`
+const Background = styled.Image`
   flex: 1;
   padding: 10px;
   border-radius: 10px;
   overflow: hidden;
+  z-index: -1;
+  height: 250px;
+  width: 100%;
+  position: absolute;
+`;
+
+const Description = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+  padding: 10px;
 `;
 
 const Title = styled(BoldText)`
@@ -56,12 +68,15 @@ const CardItem: React.FC<CardItemProps> = ({id, title, image, location}) => {
             location: location,
           });
         }}
+        style={{flex: 1}}
         activeOpacity={0.7}>
-        <Background source={{uri: image}} resizeMode="cover">
-          <View style={{height: 150}} />
+        <SharedElement id={`note.${id}.photo`}>
+          <Background source={{uri: image}} />
+        </SharedElement>
+        <Description>
           <Title>{title}</Title>
           <Location>{location}</Location>
-        </Background>
+        </Description>
       </TouchableOpacity>
     </Container>
   );
