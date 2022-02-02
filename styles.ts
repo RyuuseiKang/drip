@@ -14,6 +14,7 @@ export type Themes = {
     shadow: string;
 
     WHITE: string;
+    BLACK: string;
   };
 };
 
@@ -51,6 +52,7 @@ const DarkTheme = {
     shadow: 'rgba(0, 0, 0, 0.2)',
 
     WHITE: ColorBase.WHITE,
+    BLACK: ColorBase.BLACK,
   },
 };
 
@@ -68,6 +70,7 @@ const LightTheme = {
     shadow: 'rgba(0, 0, 0, 0.1)',
 
     WHITE: ColorBase.WHITE,
+    BLACK: ColorBase.BLACK,
   },
 };
 

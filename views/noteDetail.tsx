@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   ScrollView,
+  View,
 } from 'react-native';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {BoldText, NormalText, TitleText} from '../types';
@@ -15,19 +16,40 @@ import ParallaxHeader from '@fabfit/react-native-parallax-header';
 
 import styled from 'styled-components/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import useTheme from '../hooks/ui/useTheme';
 import {Themes} from '../styles';
+import Spacer from '../components/spacer';
 
 const Container = styled.View`
   flex: 1;
 `;
 
 const BackButtonContainer = styled.TouchableOpacity<{theme: Themes}>`
-  padding: 10px;
-
-  shadow-color: ${({theme}) => theme.colors.shadow};
+  padding: 15px;
 `;
+
+const BackButton = styled(FontAwesomeIcon)<{theme: Themes}>`
+  shadow-color: ${({theme}) => theme.colors.BLACK};
+  shadow-offset: 0px 1px;
+  shadow-opacity: 0.5;
+  shadow-radius: 2px;
+`;
+
+const ContentContainer = styled.View`
+  padding-horizontal: 20px;
+`;
+
+const ContentTitleContainer = styled.View`
+  padding-vertical: 20px;
+`;
+
+const LocationContainer = styled.View`
+  flex-direction: row;
+  padding-top: 5px;
+`;
+
+const BrewingContainer = styled.View``;
 
 export interface NoteDetailProps {
   id: number;
@@ -69,20 +91,27 @@ const NoteDetail = () => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <FontAwesomeIcon icon={faArrowLeft} color={theme.colors.WHITE} />
+              <BackButton icon={faArrowLeft} color={theme.colors.WHITE} />
             </BackButtonContainer>
           </SafeAreaView>
         )}>
-        <ScrollView
-          style={{flex: 1, height: 1000, backgroundColor: '#FF2200'}}
-          bounces={false}>
-          <TitleText>{title}</TitleText>
-          <TitleText>{title}</TitleText>
-          <TitleText>{title}</TitleText>
-          <TitleText>{title}</TitleText>
-          <TitleText>{title}</TitleText>
-          <TitleText>{title}</TitleText>
-        </ScrollView>
+        <ContentContainer>
+          <ContentTitleContainer>
+            <BoldText>{title}</BoldText>
+            <LocationContainer>
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              <Spacer width={5} />
+              <NormalText>{location}</NormalText>
+            </LocationContainer>
+          </ContentTitleContainer>
+
+          <BrewingContainer>
+            <BrewingDescriptor />
+          </BrewingContainer>
+
+          <BoldText>노트</BoldText>
+          <NormalText>대충 여기서부터 주저리주저리</NormalText>
+        </ContentContainer>
       </ParallaxHeader>
     </Container>
   );

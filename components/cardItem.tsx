@@ -3,9 +3,14 @@ import React from 'react';
 import {Touchable, TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 
 import {BoldText, NormalText, TitleText} from '../types';
 import {SharedElement} from 'react-navigation-shared-element';
+import useTheme from '../hooks/ui/useTheme';
+import {Themes} from '../styles';
+import Spacer from './spacer';
 
 export interface CardItemProps {
   id: number;
@@ -35,19 +40,7 @@ const Description = styled.View`
   flex: 1;
   justify-content: flex-end;
   padding: 10px;
-`;
 
-const Title = styled(BoldText)`
-  color: white;
-  shadow-color: black;
-  shadow-offset: 0px 1px;
-  shadow-opacity: 0.6;
-  shadow-radius: 2px;
-  elevation: 2;
-`;
-
-const Location = styled(NormalText)`
-  color: white;
   shadow-color: black;
   shadow-offset: 0px 1px;
   shadow-opacity: 0.7;
@@ -55,8 +48,23 @@ const Location = styled(NormalText)`
   elevation: 2;
 `;
 
+const Title = styled(BoldText)`
+  color: white;
+`;
+
+const LocationContainer = styled.View`
+  flex-direction: row;
+  padding-top: 5px;
+`;
+
+const Location = styled(NormalText)`
+  color: white;
+`;
+
 const CardItem: React.FC<CardItemProps> = ({id, title, image, location}) => {
   const navigation = useNavigation();
+  const theme = useTheme<Themes>();
+
   return (
     <Container>
       <TouchableOpacity
@@ -75,7 +83,11 @@ const CardItem: React.FC<CardItemProps> = ({id, title, image, location}) => {
         </SharedElement>
         <Description>
           <Title>{title}</Title>
-          <Location>{location}</Location>
+          <LocationContainer>
+            <FontAwesomeIcon icon={faMapMarkerAlt} color={theme.colors.WHITE} />
+            <Spacer width={5} />
+            <Location>{location}</Location>
+          </LocationContainer>
         </Description>
       </TouchableOpacity>
     </Container>
