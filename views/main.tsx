@@ -138,6 +138,8 @@ const Main: React.FC = () => {
             )}
             contentContainerStyle={{
               paddingTop: 40,
+              paddingLeft: 5,
+              paddingRight: 5,
             }}
             contentInset={{top: 55, bottom: 25}}
             contentOffset={{x: 0, y: -55}}

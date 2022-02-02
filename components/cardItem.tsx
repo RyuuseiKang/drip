@@ -15,7 +15,7 @@ export interface CardItemProps {
 
 const Container = styled.View`
   flex: 1;
-  padding: 10px;
+  padding: 5px;
 `;
 
 const Background = styled.ImageBackground`
@@ -51,6 +51,9 @@ const CardItem: React.FC<CardItemProps> = ({id, title, image, location}) => {
         onPress={() => {
           navigation.navigate('NoteDetail', {
             id: id,
+            title: title,
+            image: image,
+            location: location,
           });
         }}
         activeOpacity={0.7}>

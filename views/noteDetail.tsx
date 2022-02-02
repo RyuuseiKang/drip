@@ -4,8 +4,11 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 import {TitleText} from '../types';
 import {ScreenParamList} from '../AppRouter';
 
-interface NoteDetailProps {
+export interface NoteDetailProps {
   id: number;
+  title: string;
+  image: string;
+  location: string;
 }
 
 const NoteDetail: React.FC = () => {

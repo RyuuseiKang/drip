@@ -3,14 +3,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import MainView from './views/main';
-import NoteDetailView from './views/noteDetail';
+import NoteDetailView, {NoteDetailProps} from './views/noteDetail';
 
 const MainStack = createNativeStackNavigator();
 const RootStack = createNativeStackNavigator();
 
 export type ScreenParamList = {
   Main: undefined;
-  NoteDetail: {id: number};
+  NoteDetail: NoteDetailProps;
 };
 
 const Main: React.FC = () => {
@@ -27,7 +27,7 @@ const Main: React.FC = () => {
         name="NoteDetail"
         component={NoteDetailView}
         options={{
-          headerShown: false,
+          headerShown: true,
         }}
       />
     </MainStack.Navigator>
