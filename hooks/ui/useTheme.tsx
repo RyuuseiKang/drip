@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Appearance, PixelRatio} from 'react-native';
 import {Theme} from '@react-navigation/native';
-import {DarkTheme, LightTheme} from '../../styles';
+import {DarkTheme, LightTheme, Themes} from '../../styles';
 
-const useTheme = (): Theme => {
-  const [theme, setTheme] = useState<Theme>({...DarkTheme, dark: true});
+const useTheme = <T extends Theme | Themes>(): T => {
+  const [theme, setTheme] = useState<Theme | Themes>({
+    ...DarkTheme,
+    dark: true,
+  });
   const [mode, setMode] = useState<string>(
     Appearance.getColorScheme() || 'dark',
   );
@@ -26,7 +29,7 @@ const useTheme = (): Theme => {
     Appearance.addChangeListener(updateMode);
   }, []);
 
-  return theme;
+  return theme as T;
 };
 
 export default useTheme;

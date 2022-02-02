@@ -1,6 +1,7 @@
 import {Theme} from '@react-navigation/native';
 
-export interface Themes extends Theme {
+export type Themes = {
+  dark: boolean;
   colors: {
     primary: string;
     background: string;
@@ -11,8 +12,10 @@ export interface Themes extends Theme {
     nav_background: string;
     separator: string;
     shadow: string;
+
+    WHITE: string;
   };
-}
+};
 
 const ColorBase = {
   RED: '#FF342A',
@@ -35,6 +38,7 @@ const ColorBase = {
 };
 
 const DarkTheme = {
+  dark: true,
   colors: {
     primary: 'rgb(255, 45, 85)',
     background: ColorBase.LIGHTBLACK,
@@ -45,10 +49,13 @@ const DarkTheme = {
     nav_background: ColorBase.LIGHTGRAY,
     separator: ColorBase.MIDGRAY,
     shadow: 'rgba(0, 0, 0, 0.2)',
+
+    WHITE: ColorBase.WHITE,
   },
 };
 
 const LightTheme = {
+  dark: false,
   colors: {
     primary: 'rgb(255, 45, 85)',
     background: ColorBase.LIGHT_WHITE,
@@ -59,6 +66,8 @@ const LightTheme = {
     nav_background: ColorBase.GRAY,
     separator: ColorBase.MIDGRAY,
     shadow: 'rgba(0, 0, 0, 0.1)',
+
+    WHITE: ColorBase.WHITE,
   },
 };
 

@@ -29,9 +29,7 @@ const Main: React.FC = () => {
         name="NoteDetail"
         component={NoteDetailView}
         options={{
-          gestureEnabled: false,
-          headerShown: true,
-          detachPreviousScreen: false,
+          headerShown: false,
         }}
         sharedElements={(route, otherRoute, showing) => {
           const {id} = route.params;

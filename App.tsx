@@ -5,7 +5,7 @@ import useTheme from './hooks/ui/useTheme';
 import AppRouter, {ScreenParamList} from './AppRouter';
 
 const App: React.FC = () => {
-  const theme: Theme = useTheme();
+  const theme = useTheme<Theme>();
 
   return (
     <ThemeProvider theme={theme}>
