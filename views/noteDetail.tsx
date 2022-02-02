@@ -20,6 +20,7 @@ import {faArrowLeft, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import useTheme from '../hooks/ui/useTheme';
 import {Themes} from '../styles';
 import Spacer from '../components/spacer';
+import BrewingDescriptor from '../components/brewingDescriptor';
 
 const Container = styled.View`
   flex: 1;
